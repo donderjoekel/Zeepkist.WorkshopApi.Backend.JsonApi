@@ -38,6 +38,11 @@ builder.Services.AddJsonApi<ZworpshopContext>(options =>
 
 WebApplication app = builder.Build();
 
+app.UseCors(policyBuilder => policyBuilder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
