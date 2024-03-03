@@ -8,7 +8,7 @@ WORKDIR /src
 COPY . .
 RUN dotnet restore
 WORKDIR /src
-RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build -c Release -o /app/build
 
 FROM build AS publish
 WORKDIR /src
