@@ -15,7 +15,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11"/>
-        <PackageReference Include="TNRD.Zeepkist.WorkshopApi.Database" Version="2.0.0" />
+        <PackageReference Include="TNRD.Zeepkist.WorkshopApi.Database" Version="2.0.3" />
     </ItemGroup>
 
     <ItemGroup>
