@@ -4,13 +4,13 @@ using TNRD.Zeepkist.WorkshopApi.Database.Models;
 
 namespace TNRD.Zeepkist.WorkshopApi.Backend.JsonApi.Controllers;
 
-public class LevelsController : ReadOnlyController<Level, int>
+public class MetadataController : ReadOnlyController<Metadata, string>
 {
-    public LevelsController(
+    public MetadataController(
         IJsonApiOptions options,
         IResourceGraph resourceGraph,
         ILoggerFactory loggerFactory,
-        IResourceQueryService<Level, int> resourceService
+        IResourceQueryService<Metadata, string> resourceService
     )
         : base(options, resourceGraph, loggerFactory, resourceService)
     {

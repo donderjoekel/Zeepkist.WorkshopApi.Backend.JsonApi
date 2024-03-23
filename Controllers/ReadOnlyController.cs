@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TNRD.Zeepkist.WorkshopApi.Backend.JsonApi.Controllers;
 
-public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
-    where TResource : class, IIdentifiable<int>
+public class ReadOnlyController<TResource, TId> : JsonApiController<TResource, TId>
+    where TResource : class, IIdentifiable<TId>
 {
     public ReadOnlyController(
         IJsonApiOptions options,
         IResourceGraph resourceGraph,
         ILoggerFactory loggerFactory,
-        IResourceQueryService<TResource, int> resourceService
+        IResourceQueryService<TResource, TId> resourceService
     )
         : base(options,
             resourceGraph,
@@ -32,14 +32,14 @@ public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
     }
 
     [HttpGet("{id}")]
-    public override Task<IActionResult> GetAsync(int id, CancellationToken cancellationToken)
+    public override Task<IActionResult> GetAsync(TId id, CancellationToken cancellationToken)
     {
         return base.GetAsync(id, cancellationToken);
     }
 
     [HttpGet("{id}/{relationshipName}")]
     public override Task<IActionResult> GetSecondaryAsync(
-        int id,
+        TId id,
         string relationshipName,
         CancellationToken cancellationToken
     )
@@ -49,7 +49,7 @@ public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
 
     [HttpGet("{id}/relationships/{relationshipName}")]
     public override Task<IActionResult> GetRelationshipAsync(
-        int id,
+        TId id,
         string relationshipName,
         CancellationToken cancellationToken
     )
@@ -58,14 +58,14 @@ public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
-    public override Task<IActionResult> DeleteAsync(int id, CancellationToken cancellationToken)
+    public override Task<IActionResult> DeleteAsync(TId id, CancellationToken cancellationToken)
     {
         return Task.FromResult<IActionResult>(new ForbidResult());
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
     public override Task<IActionResult> DeleteRelationshipAsync(
-        int id,
+        TId id,
         string relationshipName,
         ISet<IIdentifiable> rightResourceIds,
         CancellationToken cancellationToken
@@ -75,14 +75,14 @@ public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
-    public override Task<IActionResult> PatchAsync(int id, TResource resource, CancellationToken cancellationToken)
+    public override Task<IActionResult> PatchAsync(TId id, TResource resource, CancellationToken cancellationToken)
     {
         return Task.FromResult<IActionResult>(new ForbidResult());
     }
 
     [ApiExplorerSettings(IgnoreApi = true)]
     public override Task<IActionResult> PatchRelationshipAsync(
-        int id,
+        TId id,
         string relationshipName,
         object? rightValue,
         CancellationToken cancellationToken
@@ -99,7 +99,7 @@ public class ReadOnlyController<TResource> : JsonApiController<TResource, int>
 
     [ApiExplorerSettings(IgnoreApi = true)]
     public override Task<IActionResult> PostRelationshipAsync(
-        int id,
+        TId id,
         string relationshipName,
         ISet<IIdentifiable> rightResourceIds,
         CancellationToken cancellationToken
