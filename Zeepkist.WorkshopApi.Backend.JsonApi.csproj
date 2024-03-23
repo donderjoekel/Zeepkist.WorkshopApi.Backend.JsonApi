@@ -23,8 +23,12 @@
         </Content>
     </ItemGroup>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(UsePackageReference)' != 'true'">
       <ProjectReference Include="..\Zeepkist.WorkshopApi.Database\Zeepkist.WorkshopApi.Database.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup Condition="'$(UsePackageReference)' == 'true'">
+        <PackageReference Include="Zeepkist.WorkshopApi.Database" Version="2.0.0" />
     </ItemGroup>
 
 </Project>

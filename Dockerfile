@@ -12,7 +12,7 @@ RUN dotnet build -c Release -o /app/build
 
 FROM build AS publish
 WORKDIR /src
-RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false /p:UsePackageReference=true
 
 FROM base AS final
 WORKDIR /app
