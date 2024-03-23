@@ -15,13 +15,16 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11"/>
-        <PackageReference Include="TNRD.Zeepkist.WorkshopApi.Database" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="..\.dockerignore">
             <Link>.dockerignore</Link>
         </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Zeepkist.WorkshopApi.Database\Zeepkist.WorkshopApi.Database.csproj" />
     </ItemGroup>
 
 </Project>
